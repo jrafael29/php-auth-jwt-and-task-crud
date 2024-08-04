@@ -44,7 +44,3 @@ class PasswordService
         return bin2hex($hash);
     }
 }
-
-// Usage example:
-// $hashedPassword = PasswordService::hashPassword('your-password');
-// $isMatch = PasswordService::comparePassword($hashedPassword, 'your-password');
