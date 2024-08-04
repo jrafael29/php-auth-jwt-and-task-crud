@@ -19,10 +19,6 @@ try{
   $taskController       = new UpdateTaskController($taskAction);
 
   $response = $taskController->handle($body);
-  // $taskRepository->update((int) $body['id'], (string) $body['description'], (bool) $body['done']);
-  // $createTaskAction     = new CreateTaskAction($taskRepository);
-  // $createTaskController = new CreateTaskController($createTaskAction);
-  // $response = $createTaskController->handle($body);
 
 }catch(\Exception $e){
   $response = ['statusCode' => 500,'message' => $e->getMessage()];
