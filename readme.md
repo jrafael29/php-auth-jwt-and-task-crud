@@ -32,6 +32,6 @@ Ao Possuir o Bearer Token, altere o do exemplo, pelo o seu.
 `curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer x.y.z" -d '{"id":"1"}' http://localhost:8888/delete_task.php`
 
 #### Atualizar uma task
-`curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer x.y.z" -d '{"id","description":"alterando"}' http://localhost:8888/update_task.php`
+`curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer x.y.z" -d '{"id":"1","description":"alterando","done":"0"}' http://localhost:8888/update_task.php`
 
 _José Rafael_
