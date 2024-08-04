@@ -14,21 +14,24 @@ Aplicação feita para estudo. Autenticação com JWT e CRUD de Tasks, utilizand
 
 ## Exemplo de requisições HTTP para teste:
 
-### Criar um usuario
+#### Criar um usuario
 `curl -X POST -d '{"name":"User Test","email":"test@mail.com","password":"123456"}' http://localhost:8888/register.php`
 
-### Autenticar um usuario
+#### Autenticar um usuario
 `curl -X POST -d '{,"email":"test@mail.com","password":"123456"}' http://localhost:8888/login.php`
 
 Ao Possuir o Bearer Token, altere o do exemplo, pelo o seu.
 
-### Criar uma task
+#### Criar uma task
 `curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer x.y.z" -d '{"description":"Task Title"}' http://localhost:8888/create_task.php`
 
-### Buscar tasks
+#### Buscar tasks
 `curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer x.y.z" http://localhost:8888/get_tasks.php`
 
-### Remover uma task
+#### Remover uma task
 `curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer x.y.z" -d '{"id":"1"}' http://localhost:8888/delete_task.php`
+
+#### Atualizar uma task
+`curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer x.y.z" -d '{"id","description":"alterando"}' http://localhost:8888/update_task.php`
 
 _José Rafael_

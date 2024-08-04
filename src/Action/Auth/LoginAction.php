@@ -6,7 +6,7 @@ use Src\Dto\Auth\Login\LoginInputDTO;
 use Src\Dto\Auth\Login\LoginOutputDTO;
 use Src\Service\Auth\JwtService;
 use Src\Service\Auth\PasswordService;
-use Src\Interface\UserRepository;
+use Src\Interface\Repository\UserRepository;
 use Src\Interface\Action\LoginAction as ILoginAction;
 use Exception;
 

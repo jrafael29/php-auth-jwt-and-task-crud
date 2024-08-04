@@ -5,7 +5,7 @@ namespace Src\Action\Auth;
 use Src\Dto\Auth\Register\RegisterInputDTO;
 use Src\Dto\Auth\Register\RegisterOutputDTO;
 use Src\Service\Auth\PasswordService;
-use Src\Interface\UserRepository;
+use Src\Interface\Repository\UserRepository;
 use Src\Interface\Action\RegisterAction as IRegisterAction;
 use Exception;
 

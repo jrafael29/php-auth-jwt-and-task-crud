@@ -1,5 +1,5 @@
 <?php 
-namespace Src\Interface;
+namespace Src\Interface\Repository;
 use Src\Model\TaskModel;
 interface TaskRepository
 {
@@ -11,4 +11,6 @@ interface TaskRepository
   public function create(string $description);
 
   public function delete(int $id): bool;
+
+  public function update(int $taskId, string $description = null, bool $done): bool;
 }

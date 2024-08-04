@@ -1,7 +1,7 @@
 <?php 
 declare(strict_types=1);
 namespace Src\Repository;
-use Src\Interface\TaskRepository;
+use Src\Interface\Repository\TaskRepository;
 use Src\Model\TaskModel;
 use Exception;
 
@@ -47,11 +47,10 @@ class TaskMysqliRepository implements TaskRepository
   public function create(string $description)
   {
     if(!$description) throw new Exception("invalid data");
-    $stmt = $this->mysqli->prepare("INSERT INTO tasks (user_id, description) VALUES (?, ?)");
+    $stmt = $this->mysqli->prepare("INSERT INTO tasks (user_id, description, done) VALUES (?, ?, 0)");
     if ($stmt === false) {
         throw new Exception($this->mysqli->error);
     }
-
     $stmt->bind_param('ss', $this->authUserId, $description);
     if ($stmt->execute()) {
       $id = $stmt->insert_id;
@@ -81,6 +80,42 @@ class TaskMysqliRepository implements TaskRepository
     } else {
       $stmt->close();
       throw new Exception($stmt->error);
+    }
+  }
+
+  public function update(int $taskId, string $description = null, bool $done): bool
+  {
+    if (!$taskId) throw new Exception("Invalid data");
+
+    $query = "UPDATE tasks SET ";
+    $params = [];
+    $types = '';
+
+    if ($description !== null) {
+        $query .= "description = ?, ";
+        $params[] = $description;
+        $types .= 's';
+    }
+
+    $query .= "done = ? WHERE id = ?";
+    $params[] = $done;
+    $types .= 'i';
+    $params[] = $taskId;
+    $types .= 'i';
+
+    $stmt = $this->mysqli->prepare($query);
+    if ($stmt === false) {
+        throw new Exception($this->mysqli->error);
+    }
+
+    $stmt->bind_param($types, ...$params);
+
+    if ($stmt->execute()) {
+      $stmt->close();
+      return true;
+    } else {
+      $stmt->close();
+      return false;
     }
   }
 }

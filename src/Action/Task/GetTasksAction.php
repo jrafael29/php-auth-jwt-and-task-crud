@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace Src\Action\Task;
 
-use Src\Interface\TaskRepository;
+use Src\Interface\Repository\TaskRepository;
 use Src\Interface\Action\GetTasksAction as IGetTasksAction;
 use Exception;
 

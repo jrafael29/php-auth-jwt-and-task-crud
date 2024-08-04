@@ -1,5 +1,5 @@
 <?php 
-namespace Src\Interface;
+namespace Src\Interface\Repository;
 interface UserRepository
 {
   public function create($name, $email, $password);

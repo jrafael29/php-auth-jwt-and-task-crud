@@ -1,7 +1,7 @@
 <?php 
 declare(strict_types=1);
 namespace Src\Repository;
-use Src\Interface\UserRepository;
+use Src\Interface\Repository\UserRepository;
 
 class UserMysqliRepository implements UserRepository
 {
