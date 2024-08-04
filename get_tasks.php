@@ -4,23 +4,23 @@ header("Content-Type: application/json; charset=utf-8");
 
 use Src\Middleware\AuthMiddleware;
 use Src\Repository\TaskMysqliRepository;
+use Src\Action\Task\GetTasksAction;
+use Src\Controller\Task\GetTasksController;
 
 try{
   $middlewarePass = AuthMiddleware::use(getallheaders());
   [$userId, $userEmail] = [$middlewarePass['id'], $middlewarePass['email']];
   
   $mysqli = new mysqli("localhost:3306", "root", "root", "puraodb");
-  $taskRepository = new TaskMysqliRepository($mysqli, $userId);
-  $result = $taskRepository->getAll();
+  $getTasksRepository  = new TaskMysqliRepository($mysqli, $userId);
+  $getTasksAction      = new GetTasksAction($getTasksRepository);
+  $taskController      = new GetTasksController($getTasksAction);
 
-  $response = [
-    'statusCode' => 200,
-    'data' => $result
-  ];
+  $response = $taskController->handle();
 }catch(\Exception $e){
   $response = [
     'statusCode' => 500,
-    'message' => "{$e->getMessage()}"
+    'message' => $e->getMessage()
   ];
 }
 

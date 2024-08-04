@@ -22,7 +22,7 @@ class TaskMysqliRepository implements TaskRepository
 
   public function getAll(): array
   {
-    $stmt = $this->mysqli->prepare("SELECT t.id, t.user_id, t.description, t.done FROM tasks t WHERE t.user_id = ? LIMIT 50");
+    $stmt = $this->mysqli->prepare("SELECT t.id, t.user_id, t.description, t.done, t.created_at FROM tasks t WHERE t.user_id = ? LIMIT 50");
     if ($stmt === false) {
         throw new Exception($this->mysqli->error);
     }
@@ -36,8 +36,8 @@ class TaskMysqliRepository implements TaskRepository
     }
     $tasks = [];
     foreach($result->fetch_all() as $key => $value){
-      [$id, $userId, $description, $done] = $value;
-      $task = new TaskModel($id, $userId, $description, (bool)$done);
+      [$id, $userId, $description, $done, $createdAt] = $value;
+      $task = new TaskModel($id, $userId, $description, (bool)$done, $createdAt);
       array_push($tasks, $task());
     }
     $stmt->close();
