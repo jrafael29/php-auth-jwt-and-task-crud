@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace Src\Controller\Task;
 use Src\Action\Task\CreateTaskAction;
 use Src\Dto\Task\Create\CreateTaskInputDTO;
-
+use Exception;
 class CreateTaskController 
 {
   private CreateTaskAction $action;
@@ -28,17 +28,16 @@ class CreateTaskController
           description: $description
         )
       );
+      
+      if(!$createTaskActionResult) throw new Exception("internal server error");
 
-      if($createTaskActionResult){
-        return ['statusCode' => 200,'data' => [
-          'id'          => $createTaskActionResult->id,
-          'user_id'     => $createTaskActionResult->userId,
-          'description' => $createTaskActionResult->description,
-          'status'      => $createTaskActionResult->status,
-          'created_at'  => $createTaskActionResult->createdAt
-        ]];
-      }
-      return ['statusCode' => 500,'message' => "deu ruim"];
+      return ['statusCode' => 200,'data' => [
+        'id'          => $createTaskActionResult->id,
+        'user_id'     => $createTaskActionResult->userId,
+        'description' => $createTaskActionResult->description,
+        'status'      => $createTaskActionResult->status,
+        'created_at'  => $createTaskActionResult->createdAt
+      ]];
     }catch(\Exception $e){
       // reportar $e->getMessage
       return [

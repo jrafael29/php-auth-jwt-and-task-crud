@@ -64,4 +64,23 @@ class TaskMysqliRepository implements TaskRepository
     }
   }
 
+  public function delete(int $taskId): bool
+  {
+    if(!$taskId) throw new Exception("invalid data");
+    $stmt = $this->mysqli->prepare("DELETE FROM tasks t WHERE t.id = ? AND t.user_id = ?");
+    if ($stmt === false) {
+        throw new Exception($this->mysqli->error);
+    }
+
+    $stmt->bind_param('ss', $taskId, $this->authUserId);
+    if ($stmt->execute()) {
+      if($stmt->affected_rows){
+        return true;
+      }
+      return false;
+    } else {
+      $stmt->close();
+      throw new Exception($stmt->error);
+    }
+  }
 }

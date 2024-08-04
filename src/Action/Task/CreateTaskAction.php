@@ -20,7 +20,7 @@ class CreateTaskAction implements ICreateTaskAction
   public function perform(CreateTaskInputDTO $data): CreateTaskOutputDTO
   {
     $result = $this->repository->create($data->description);
-    [$id, $userId, $description, $status, $createdAt] = [$result['id'], $result['userId'], $result['description'], $result['status'], $result['created_at']];
+    [$id, $userId, $description, $status, $createdAt] = [$result['id'], $result['user_id'], $result['description'], $result['status'], $result['created_at']];
     return new CreateTaskOutputDTO((int) $id, (int) $userId, (string) $description, (string) $status, $createdAt);
   }
 }

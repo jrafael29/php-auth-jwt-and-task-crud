@@ -28,5 +28,7 @@ Ao Possuir o Bearer Token, altere o do exemplo, pelo o seu.
 ### Buscar tasks
 `curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer x.y.z" http://localhost:8888/get_tasks.php`
 
+### Remover uma task
+`curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer x.y.z" -d '{"id":"1"}' http://localhost:8888/delete_task.php`
 
 _José Rafael_
