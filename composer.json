@@ -1,0 +1,17 @@
+{
+    "name": "jrafael/maybe_good",
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "jose rafael"
+        }
+    ],
+    "require": {
+        "firebase/php-jwt": "^6.10",
+        "paragonie/sodium_compat": "^2.0"
+    }
+}
