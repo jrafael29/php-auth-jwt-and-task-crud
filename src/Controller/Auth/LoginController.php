@@ -10,11 +10,8 @@ use Src\Interface\Action\LoginAction;
 
 class LoginController 
 {
-  private LoginAction $action;
-  public function __construct(LoginAction $action)
-  {
-    $this->action = $action;
-  }
+  public function __construct(private LoginAction $action)
+  {}
 
   public function handle(array $body): array
   {

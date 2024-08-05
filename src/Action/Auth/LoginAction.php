@@ -12,11 +12,8 @@ use Exception;
 
 class LoginAction implements ILoginAction
 {
-  private UserRepository $userRepository;
-  public function __construct(UserRepository $userRepository)
-  {
-    $this->userRepository = $userRepository;
-  }
+  public function __construct(private UserRepository $userRepository)
+  {}
   
   public function perform(LoginInputDTO $data): LoginOutputDTO
   {

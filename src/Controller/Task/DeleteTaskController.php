@@ -6,11 +6,8 @@ use Src\Dto\Task\Create\CreateTaskInputDTO;
 use Exception;
 class DeleteTaskController 
 {
-  private DeleteTaskAction $action;
-  public function __construct(DeleteTaskAction $action)
-  {
-    $this->action = $action;
-  }
+  public function __construct(private DeleteTaskAction $action)
+  {}
 
   public function handle(array $body): array
   {

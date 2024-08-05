@@ -11,11 +11,8 @@ use Exception;
 
 class RegisterAction implements IRegisterAction
 {
-  private UserRepository $userRepository;
-  public function __construct(UserRepository $userRepository)
-  {
-    $this->userRepository = $userRepository;
-  }
+  public function __construct(private UserRepository $userRepository)
+  {}
   
   public function perform(RegisterInputDTO $data): RegisterOutputDTO
   {

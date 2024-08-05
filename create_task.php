@@ -12,11 +12,11 @@ try{
   $middlewarePass = AuthMiddleware::use(getallheaders());
   $body = json_decode(file_get_contents("php://input"), true);
 
-  [$userId, $userEmail] = [$middlewarePass['id'], $middlewarePass['email']];
+  [$authUserId, $authUserEmail] = [$middlewarePass['id'], $middlewarePass['email']];
 
   $mysqli = new mysqli("localhost:3306", "root", "root", "puraodb");
 
-  $taskRepository       = new TaskMysqliRepository($mysqli, $userId);
+  $taskRepository       = new TaskMysqliRepository($mysqli, $authUserId);
   $createTaskAction     = new CreateTaskAction($taskRepository);
   $createTaskController = new CreateTaskController($createTaskAction);
 

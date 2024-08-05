@@ -6,11 +6,8 @@ use Exception;
 
 class GetTasksController 
 {
-  private GetTasksAction $action;
-  public function __construct(GetTasksAction $action)
-  {
-    $this->action = $action;
-  }
+  public function __construct(private GetTasksAction $action)
+  {}
 
   public function handle(): array
   {

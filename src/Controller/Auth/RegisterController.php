@@ -7,14 +7,10 @@ use Src\ObjectValue\Auth\Email;
 use Src\ObjectValue\Auth\Password;
 use Src\Interface\Action\RegisterAction as IRegisterAction;
 
-
 class RegisterController 
 {
-  private IRegisterAction $action;
-  public function __construct(IRegisterAction $action)
-  {
-    $this->action = $action;
-  }
+  public function __construct(private IRegisterAction $action)
+  {}
 
   public function handle(array $body): array
   {

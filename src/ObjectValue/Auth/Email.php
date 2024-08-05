@@ -4,8 +4,7 @@ namespace Src\ObjectValue\Auth;
 
 class Email 
 {
-  private string $email;
-  public function __construct(string $email)
+  public function __construct(private string $email)
   {
     $this->email = $email;
     if (!$this->validate()) {

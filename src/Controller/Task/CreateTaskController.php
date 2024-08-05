@@ -6,11 +6,8 @@ use Src\Dto\Task\Create\CreateTaskInputDTO;
 use Exception;
 class CreateTaskController 
 {
-  private CreateTaskAction $action;
-  public function __construct(CreateTaskAction $action)
-  {
-    $this->action = $action;
-  }
+  public function __construct(private CreateTaskAction $action)
+  {}
 
   public function handle(array $body): array
   {

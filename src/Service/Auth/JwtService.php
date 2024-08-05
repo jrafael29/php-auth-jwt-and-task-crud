@@ -5,6 +5,7 @@ namespace Src\Service\Auth;
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+use Exception;
 
 class JwtService
 {
@@ -38,9 +39,9 @@ class JwtService
         if(gettype($decoded) == 'object') return (array) $decoded;
         return false;
     } catch (\Firebase\JWT\ExpiredException $e) {
-        throw new Error($e->getMessage()) ;
+        throw new Exception($e->getMessage()) ;
     } catch (\Exception $e) {
-        throw new Error('Internal server error');
+        throw new Exception('Internal server error');
     }
   }
 }

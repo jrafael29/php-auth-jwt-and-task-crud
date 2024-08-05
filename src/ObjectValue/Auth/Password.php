@@ -4,8 +4,7 @@ namespace Src\ObjectValue\Auth;
 
 class Password 
 {
-  private string $password;
-  public function __construct(string $password)
+  public function __construct(private string $password)
   {
     $this->password = $password;
     if (!$this->validate()) {

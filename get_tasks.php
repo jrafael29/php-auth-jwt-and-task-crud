@@ -9,11 +9,12 @@ use Src\Controller\Task\GetTasksController;
 
 try{
   $middlewarePass = AuthMiddleware::use(getallheaders());
-  [$userId, $userEmail] = [$middlewarePass['id'], $middlewarePass['email']];
+
+  [$authUserId, $authUserEmail] = [$middlewarePass['id'], $middlewarePass['email']];
   
   $mysqli = new mysqli("localhost:3306", "root", "root", "puraodb");
   
-  $taskRepository      = new TaskMysqliRepository($mysqli, $userId);
+  $taskRepository      = new TaskMysqliRepository($mysqli, $authUserId);
   $getTasksAction      = new GetTasksAction($taskRepository);
   $getTasksController  = new GetTasksController($getTasksAction);
 

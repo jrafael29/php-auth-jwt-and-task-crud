@@ -6,11 +6,8 @@ use Src\Dto\Task\Update\UpdateTaskInputDTO;
 use Exception;
 class UpdateTaskController 
 {
-  private UpdateTaskAction $action;
-  public function __construct(UpdateTaskAction $action)
-  {
-    $this->action = $action;
-  }
+  public function __construct(private UpdateTaskAction $action)
+  {}
 
   public function handle(array $body): array
   {
