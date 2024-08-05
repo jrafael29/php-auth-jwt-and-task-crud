@@ -7,11 +7,11 @@ use Exception;
 
 class TaskMysqliRepository implements TaskRepository
 {
-  private $mysqli;
-  private $authUserId;
-  public function __construct($mysqli, $authUserId)
+  private \mysqli $mysqli;
+  private int $authUserId;
+  public function __construct(\mysqli $mysqli, int $authUserId)
   {
-    $this->mysqli = $mysqli;
+    $this->mysqli     = $mysqli;
     $this->authUserId = $authUserId;
   }
 

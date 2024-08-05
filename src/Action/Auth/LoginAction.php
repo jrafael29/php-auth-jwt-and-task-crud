@@ -38,6 +38,6 @@ class LoginAction implements ILoginAction
       'email' => $userExists['email']
     ]);
 
-    return new LoginOutputDTO($jwtSignResult['value']);
+    return new LoginOutputDTO(token: $jwtSignResult['value']);
   }
 }

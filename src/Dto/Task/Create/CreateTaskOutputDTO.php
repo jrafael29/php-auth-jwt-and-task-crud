@@ -11,6 +11,7 @@ class CreateTaskOutputDTO implements OutputDTO
     public int    $userId,
     public string $description,
     public string $status,
+    public string $done,
     public string $createdAt,
   )
   {}

@@ -9,6 +9,7 @@ use Firebase\JWT\Key;
 class JwtService
 {
   private static $JWT_SECRET_KEY = "my_secret_key";
+  private static $JWT_EXPIRATION_TIME = 3600; // 1h
 
   public function __construct()
   {
@@ -22,7 +23,7 @@ class JwtService
       if (empty($payload)) {
           throw new Exception("invalid payload");
       }
-
+      $payload['exp'] = time() + self::$JWT_EXPIRATION_TIME;
       $token = JWT::encode($payload, self::$JWT_SECRET_KEY, 'HS256');
 
       return [
@@ -32,14 +33,14 @@ class JwtService
 
   public static function verify(string $token)
   {
-      try {
-          $decoded = JWT::decode($token, new Key(self::$JWT_SECRET_KEY, 'HS256'));
-          if(gettype($decoded) == 'object') return (array) $decoded;
-          return false;
-      } catch (\Firebase\JWT\ExpiredException $e) {
-          return "hehe".$e->getMessage();
-      } catch (Exception $e) {
-          return 'internal server error';
-      }
+    try {
+        $decoded = JWT::decode($token, new Key(self::$JWT_SECRET_KEY, 'HS256'));
+        if(gettype($decoded) == 'object') return (array) $decoded;
+        return false;
+    } catch (\Firebase\JWT\ExpiredException $e) {
+        throw new Error($e->getMessage()) ;
+    } catch (\Exception $e) {
+        throw new Error('Internal server error');
+    }
   }
 }

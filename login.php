@@ -11,8 +11,8 @@ try{
 
   $mysqli = new mysqli("localhost:3306", "root", "root", "puraodb");
 
-  $userMysqliRepository = new UserMysqliRepository($mysqli);
-  $loginAction          = new LoginAction($userMysqliRepository);
+  $userRepository       = new UserMysqliRepository($mysqli);
+  $loginAction          = new LoginAction($userRepository);
   $loginController      = new LoginController($loginAction);
   
   $response = $loginController->handle($body);

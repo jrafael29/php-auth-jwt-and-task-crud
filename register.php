@@ -11,8 +11,8 @@ try{
   
   $mysqli = new mysqli("localhost:3306", "root", "root", "puraodb");
 
-  $userMysqliRepository = new UserMysqliRepository($mysqli);
-  $registerAction       = new RegisterAction($userMysqliRepository);
+  $userRepository       = new UserMysqliRepository($mysqli);
+  $registerAction       = new RegisterAction($userRepository);
   $registerController   = new RegisterController($registerAction);
 
   $response = $registerController->handle($body);

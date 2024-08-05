@@ -20,6 +20,7 @@ class TaskModel
       'user_id'     => $this->getUserId(),
       'description' => $this->getDescription(),
       'status'      => $this->getStatus(),
+      'done'        => $this->getDone(),
       'created_at'  => $this->getCreatedAt()
     ];
   }
@@ -35,6 +36,10 @@ class TaskModel
   public function getDescription()
   {
     return $this->description;
+  }
+  public function getDone()
+  {
+    return $this->done;
   }
   public function getStatus()
   {

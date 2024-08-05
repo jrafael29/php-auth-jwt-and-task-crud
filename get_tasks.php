@@ -12,11 +12,12 @@ try{
   [$userId, $userEmail] = [$middlewarePass['id'], $middlewarePass['email']];
   
   $mysqli = new mysqli("localhost:3306", "root", "root", "puraodb");
-  $getTasksRepository  = new TaskMysqliRepository($mysqli, $userId);
-  $getTasksAction      = new GetTasksAction($getTasksRepository);
-  $taskController      = new GetTasksController($getTasksAction);
+  
+  $taskRepository      = new TaskMysqliRepository($mysqli, $userId);
+  $getTasksAction      = new GetTasksAction($taskRepository);
+  $getTasksController  = new GetTasksController($getTasksAction);
 
-  $response = $taskController->handle();
+  $response = $getTasksController->handle();
 }catch(\Exception $e){
   $response = [
     'statusCode' => 500,

@@ -13,12 +13,13 @@ try{
   $body = json_decode(file_get_contents("php://input"), true);
   [$userId, $userEmail] = [$middlewarePass['id'], $middlewarePass['email']];
 
-  $mysqli               = new mysqli("localhost:3306", "root", "root", "puraodb");
-  $taskRepository       = new TaskMysqliRepository($mysqli, $userId);
-  $taskAction           = new UpdateTaskAction($taskRepository);
-  $taskController       = new UpdateTaskController($taskAction);
+  $mysqli = new mysqli("localhost:3306", "root", "root", "puraodb");
 
-  $response = $taskController->handle($body);
+  $taskRepository          = new TaskMysqliRepository($mysqli, $userId);
+  $updateTaskAction        = new UpdateTaskAction($taskRepository);
+  $updateTaskController    = new UpdateTaskController($taskAction);
+
+  $response = $updateTaskController->handle($body);
 
 }catch(\Exception $e){
   $response = ['statusCode' => 500,'message' => $e->getMessage()];

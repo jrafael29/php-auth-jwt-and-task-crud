@@ -14,7 +14,8 @@ try{
 
   [$userId, $userEmail] = [$middlewarePass['id'], $middlewarePass['email']];
 
-  $mysqli               = new mysqli("localhost:3306", "root", "root", "puraodb");
+  $mysqli = new mysqli("localhost:3306", "root", "root", "puraodb");
+
   $taskRepository       = new TaskMysqliRepository($mysqli, $userId);
   $createTaskAction     = new CreateTaskAction($taskRepository);
   $createTaskController = new CreateTaskController($createTaskAction);
