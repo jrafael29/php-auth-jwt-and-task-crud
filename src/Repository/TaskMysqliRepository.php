@@ -4,11 +4,18 @@ namespace Src\Repository;
 use Src\Interface\Repository\TaskRepository;
 use Src\Model\TaskModel;
 use Exception;
+use mysqli;
 
 class TaskMysqliRepository implements TaskRepository
 {
-  public function __construct(private \mysqli $mysqli, private int $authUserId)
-  {}
+  private mysqli $mysqli;
+  private int $authUserId;
+
+  public function __construct(int $authUserId)
+  {
+    $this->mysqli = new mysqli("localhost:3306", "root", "root", "puraodb");
+    $this->authUserId = $authUserId;
+  }
 
   public function __destruct() 
   {

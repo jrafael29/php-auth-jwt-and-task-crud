@@ -2,11 +2,13 @@
 declare(strict_types=1);
 namespace Src\Controller\Task;
 use Src\Action\Task\CreateTaskAction;
+use Src\Interface\Feature\CreateTask;
 use Src\Dto\Task\Create\CreateTaskInputDTO;
 use Exception;
+
 class CreateTaskController 
 {
-  public function __construct(private CreateTaskAction $action)
+  public function __construct(private CreateTask $action)
   {}
 
   public function handle(array $body): array

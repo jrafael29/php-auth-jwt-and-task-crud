@@ -8,10 +8,8 @@ use Src\Repository\UserMysqliRepository;
 
 try{
   $body = json_decode(file_get_contents("php://input"), true);
-  
-  $mysqli = new mysqli("localhost:3306", "root", "root", "puraodb");
 
-  $userRepository       = new UserMysqliRepository($mysqli);
+  $userRepository       = new UserMysqliRepository();
   $registerAction       = new RegisterAction($userRepository);
   $registerController   = new RegisterController($registerAction);
 

@@ -1,12 +1,12 @@
 <?php 
 declare(strict_types=1);
 namespace Src\Controller\Task;
-use Src\Action\Task\GetTasksAction;
+use Src\Interface\Feature\GetTasks;
 use Exception;
 
 class GetTasksController 
 {
-  public function __construct(private GetTasksAction $action)
+  public function __construct(private GetTasks $action)
   {}
 
   public function handle(): array

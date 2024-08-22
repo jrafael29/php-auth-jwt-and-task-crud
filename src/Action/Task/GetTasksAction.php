@@ -3,10 +3,10 @@ declare(strict_types=1);
 namespace Src\Action\Task;
 
 use Src\Interface\Repository\TaskRepository;
-use Src\Interface\Action\GetTasksAction as IGetTasksAction;
+use Src\Interface\Feature\GetTasks;
 use Exception;
 
-class GetTasksAction implements IGetTasksAction
+class GetTasksAction implements GetTasks
 {
   private TaskRepository $repository;
   public function __construct(TaskRepository $repository)

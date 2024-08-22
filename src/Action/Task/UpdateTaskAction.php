@@ -2,14 +2,14 @@
 declare(strict_types=1);
 namespace Src\Action\Task;
 
-use Src\Interface\Action\UpdateTaskAction as IUpdateTaskAction;
+use Src\Interface\Feature\UpdateTask;
 use Src\Interface\Repository\TaskRepository;
 use Src\Dto\Task\Update\UpdateTaskInputDTO;
 use Src\Dto\Task\Update\UpdateTaskOutputDTO;
 use Src\Model\TaskModel;
 use Exception;
 
-class UpdateTaskAction implements IUpdateTaskAction
+class UpdateTaskAction implements UpdateTask
 {
   private TaskRepository $repository;
   public function __construct(TaskRepository $repository)

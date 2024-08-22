@@ -1,8 +1,8 @@
 <?php 
-namespace Src\Interface\Action;
+namespace Src\Interface\Feature;
 use Src\Dto\Auth\Register\RegisterInputDTO;
 use Src\Dto\Auth\Register\RegisterOutputDTO;
-interface RegisterAction
+interface Register
 {
   public function perform(RegisterInputDTO $data): RegisterOutputDTO;
 }

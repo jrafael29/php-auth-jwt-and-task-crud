@@ -2,18 +2,22 @@
 declare(strict_types=1);
 namespace Src\Repository;
 use Src\Interface\Repository\UserRepository;
+use mysqli;
 
 class UserMysqliRepository implements UserRepository
 {
-  public function __construct(private \mysqli $mysqli)
-  {}
+  private mysqli $mysqli;
+  public function __construct()
+  {
+    $this->mysqli = new mysqli("localhost:3306", "root", "root", "puraodb");
+  }
 
   public function __destruct() 
   {
     $this->mysqli->close();
   }
 
-  public function getByEmail($email)
+  public function getByEmail($email): array
   {
     $stmt = $this->mysqli->prepare("SELECT u.id, u.name, u.email, u.password FROM users u WHERE u.email = ? LIMIT 1");
     if ($stmt === false) {
@@ -30,7 +34,7 @@ class UserMysqliRepository implements UserRepository
 
     $user = $result->fetch_assoc();
     $stmt->close();
-
+    if(!$user) return [];
     return $user;
   }
 

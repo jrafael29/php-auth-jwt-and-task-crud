@@ -6,10 +6,10 @@ use Src\Dto\Auth\Register\RegisterInputDTO;
 use Src\Dto\Auth\Register\RegisterOutputDTO;
 use Src\Service\Auth\PasswordService;
 use Src\Interface\Repository\UserRepository;
-use Src\Interface\Action\RegisterAction as IRegisterAction;
+use Src\Interface\Feature\Register;
 use Exception;
 
-class RegisterAction implements IRegisterAction
+class RegisterAction implements Register
 {
   public function __construct(private UserRepository $userRepository)
   {}

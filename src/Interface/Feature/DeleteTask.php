@@ -1,9 +1,9 @@
 <?php 
-namespace Src\Interface\Action;
+namespace Src\Interface\Feature;
 use Src\Dto\Task\Create\CreateTaskInputDTO;
 use Src\Dto\Task\Create\CreateTaskOutputDTO;
 
-interface DeleteTaskAction
+interface DeleteTask
 {
   public function perform(int $taskId): bool;
 }

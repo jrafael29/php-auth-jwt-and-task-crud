@@ -1,12 +1,13 @@
 <?php 
 declare(strict_types=1);
 namespace Src\Controller\Task;
-use Src\Action\Task\UpdateTaskAction;
+use Src\Interface\Feature\UpdateTask;
 use Src\Dto\Task\Update\UpdateTaskInputDTO;
 use Exception;
+
 class UpdateTaskController 
 {
-  public function __construct(private UpdateTaskAction $action)
+  public function __construct(private UpdateTask $action)
   {}
 
   public function handle(array $body): array

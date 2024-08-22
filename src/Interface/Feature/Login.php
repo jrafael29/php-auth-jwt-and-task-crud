@@ -1,8 +1,8 @@
 <?php 
-namespace Src\Interface\Action;
+namespace Src\Interface\Feature;
 use Src\Dto\Auth\Login\LoginInputDTO;
 use Src\Dto\Auth\Login\LoginOutputDTO;
-interface LoginAction
+interface Login
 {
   public function perform(LoginInputDTO $data): LoginOutputDTO;
 }

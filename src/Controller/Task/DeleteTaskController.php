@@ -1,12 +1,13 @@
 <?php 
 declare(strict_types=1);
 namespace Src\Controller\Task;
-use Src\Action\Task\DeleteTaskAction;
+use Src\Interface\Feature\DeleteTask;
 use Src\Dto\Task\Create\CreateTaskInputDTO;
 use Exception;
+
 class DeleteTaskController 
 {
-  public function __construct(private DeleteTaskAction $action)
+  public function __construct(private DeleteTask $action)
   {}
 
   public function handle(array $body): array

@@ -1,9 +1,9 @@
 <?php 
-namespace Src\Interface\Action;
+namespace Src\Interface\Feature;
 use Src\Dto\Task\Update\UpdateTaskInputDTO;
 use Src\Dto\Task\Update\UpdateTaskOutputDTO;
 
-interface UpdateTaskAction
+interface UpdateTask
 {
   public function perform(UpdateTaskInputDTO $data);
 }

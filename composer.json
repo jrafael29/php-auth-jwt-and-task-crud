@@ -12,6 +12,8 @@
     ],
     "require": {
         "firebase/php-jwt": "^6.10",
-        "paragonie/sodium_compat": "^2.0"
+        "paragonie/sodium_compat": "^2.0",
+        "resend/resend-php": "^0.12.0",
+        "vlucas/phpdotenv": "^5.6"
     }
 }

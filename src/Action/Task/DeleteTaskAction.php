@@ -2,13 +2,13 @@
 declare(strict_types=1);
 namespace Src\Action\Task;
 
-use Src\Interface\Action\DeleteTaskAction as IDeleteTaskAction;
+use Src\Interface\Feature\DeleteTask;
 use Src\Interface\Repository\TaskRepository;
 use Src\Dto\Task\Create\CreateTaskInputDTO;
 use Src\Dto\Task\Create\CreateTaskOutputDTO;
 use Exception;
 
-class DeleteTaskAction implements IDeleteTaskAction
+class DeleteTaskAction implements DeleteTask
 {
   private TaskRepository $repository;
   public function __construct(TaskRepository $repository)

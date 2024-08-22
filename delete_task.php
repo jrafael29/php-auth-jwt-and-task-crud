@@ -12,10 +12,8 @@ try{
   $body = json_decode(file_get_contents("php://input"), true);
 
   [$authUserId, $authUserEmail] = [$middlewarePass['id'], $middlewarePass['email']];
-  
-  $mysqli = new mysqli("localhost:3306", "root", "root", "puraodb");
 
-  $taskRepository       = new TaskMysqliRepository($mysqli, $authUserId);
+  $taskRepository       = new TaskMysqliRepository($authUserId);
   $deleteTaskAction     = new DeleteTaskAction($taskRepository);
   $deleteTaskController = new DeleteTaskController($deleteTaskAction);
   

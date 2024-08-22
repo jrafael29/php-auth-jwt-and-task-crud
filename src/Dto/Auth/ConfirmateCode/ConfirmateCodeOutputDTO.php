@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Src\Dto\Auth\Login;
+namespace Src\Dto\Auth\ConfirmateCode;
 
 use Src\Interface\OutputDTO;
 
 
-class LoginOutputDTO implements OutputDTO
+class ConfirmateCodeOutputDTO implements OutputDTO
 {
   public function __construct(public string $token = '', public string $message = '')
   {
