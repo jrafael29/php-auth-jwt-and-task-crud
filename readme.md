@@ -7,15 +7,14 @@ Aplicação feita para estudo. Autenticação com JWT e CRUD de Tasks, utilizand
 Para criar uma nova rota, basta adiciona-la ao arquivo `routes.php`, e apontar a Classe::Função que será executada para lidar com a requisição.
 
 ## Dependencias
-##### PHP, Mysql, Redis
+##### Docker, Docker compose
+##### PHP, Mysql, Redis, Nginx, ResendAPI
 
 ## Para rodar a aplicação localmente:
 - Clone o projeto
-- Instale as dependencias
-`composer install --ignore-platform-reqs`
 
-- Inicie o servidor local
-`php -S localhost:8888`
+- Rode o docker compose
+`docker-compose up --build`
 
 ### Para testar requisições:
 Veja o arquivo `test.http`
