@@ -14,8 +14,6 @@ class GetTasksController
     try{
       
       $getTasksActionResult = $this->action->perform();
-      
-      if(!$getTasksActionResult) throw new Exception("internal server error");
 
       return ['statusCode' => 200,'data' => [
         ...$getTasksActionResult

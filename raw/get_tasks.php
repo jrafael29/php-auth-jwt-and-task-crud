@@ -1,5 +1,5 @@
 <?php 
-require_once("./vendor/autoload.php");
+require_once("../vendor/autoload.php");
 header("Content-Type: application/json; charset=utf-8");
 
 use Src\Middleware\AuthMiddleware;
@@ -9,7 +9,6 @@ use Src\Controller\Task\GetTasksController;
 
 try{
   $middlewarePass = AuthMiddleware::use(getallheaders());
-
   [$authUserId, $authUserEmail] = [$middlewarePass['id'], $middlewarePass['email']];
   
   $taskRepository      = new TaskMysqliRepository($authUserId);

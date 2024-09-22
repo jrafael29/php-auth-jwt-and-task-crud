@@ -1,0 +1,63 @@
+version: '3.7'
+
+services:
+  api:
+    build: .
+    ports:
+      - "80:80"
+    environment:
+      - REDIS_HOST=redis
+      - MYSQL_HOST=mysql
+    depends_on:
+      - redis-api
+      - rabbitmq-api
+      - mysql-api
+    networks:
+      - api_net
+  mysql-api:
+    image: mysql:8.0
+    container_name: mysql-api
+    environment:
+      - MYSQL_DATABASE=puraodb
+      - MYSQL_ROOT_PASSWORD=root
+      - TZ=America/Brasilia
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-volume:/var/lib/mysql
+    networks:
+      - api_net
+  redis-api:
+    image: redis
+    container_name: redis-api
+    command: ["redis-server"]
+    ports:
+      - "6379:6379"
+    networks:
+      - api_net
+    volumes:
+      - redis_data:/data
+  rabbitmq-api:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq-api
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+      - api_net
+
+volumes:
+  mysql-volume:
+    driver: local
+    name: mysql-volume
+  redis_data:
+    driver: local
+    name: redis_data
+
+
+networks:
+  api_net:
+    driver: bridge

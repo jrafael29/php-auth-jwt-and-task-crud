@@ -31,7 +31,7 @@ class RegisterController
         'id'       => $registerActionResult->id,
         'name'     => $registerActionResult->name,
         'email'    => $registerActionResult->email,
-        'password' => $registerActionResult->password,
+        'createdAt' => $registerActionResult->createdAt,
       ]];
 
     }catch(\Exception $e){

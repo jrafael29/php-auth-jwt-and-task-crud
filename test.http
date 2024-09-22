@@ -1,0 +1,63 @@
+@token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZW1haWwiOiJyYWZhZWxzaWx2YTkyNDBAaG90bWFpbC5jb20iLCJleHAiOjE3MjY5OTE3MTd9.6bXLU11eJvCgjexh5TOaEYszh5zg67PK55fJ5w6Wmsw
+
+
+
+
+### Registro
+POST http://localhost:80/signup
+Content-Type: application/json
+
+{"name":"Fulano","email":"rafaelsilva9240@hotmail.com","password":"123456"}
+
+
+
+### Login
+POST http://localhost:80/login
+Content-Type: application/json
+
+{"email":"rafaelsilva9240@hotmail.com","password":"123456"}
+
+
+
+### Confirmar codigo
+POST http://localhost:8888/confirmate-code
+Content-Type: application/json
+
+{"email":"rafaelsilva9240@hotmail.com","code":"858392"}
+
+
+
+
+
+### TAREFAS
+
+
+### Buscar Tarefas
+GET http://localhost:8888/task
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+
+### Criar Tarefa
+POST http://localhost:8888/task
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"description":"Alguma tarefa legal"}
+
+
+
+### Atualizar Tarefa
+PUT http://localhost:8888/task/13
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"description":"Tarefa legal alterada","done":true}
+
+
+### Excluir Tarefa
+DELETE http://localhost:8888/task/12
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"description":"Outra coisa legal"}

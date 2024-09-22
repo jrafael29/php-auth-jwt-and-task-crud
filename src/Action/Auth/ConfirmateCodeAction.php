@@ -32,6 +32,10 @@ class ConfirmateCodeAction implements ConfirmateCode
       if(!$codeIsValid) throw new Exception("invalid code");
 
       $jwtSignResult = JwtService::sign(['id' => $userExists['id'], 'email' => $userExists['email']]);
+
+      // remove code;
+      $this->confirmCodeService->destroy($email);
+
       return new ConfirmateCodeOutputDTO(token: $jwtSignResult['value']);
     }catch(\Exception $e){
       throw new Exception($e->getMessage());

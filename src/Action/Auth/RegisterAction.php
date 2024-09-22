@@ -27,6 +27,6 @@ class RegisterAction implements Register
     $hashedPassword = PasswordService::hashPassword($password);
     $userCreatedId = $this->userRepository->create($name, $email, $hashedPassword);
 
-    return new RegisterOutputDTO($userCreatedId, $name, $email, $hashedPassword);
+    return new RegisterOutputDTO($userCreatedId, $name, $email, $hashedPassword, date('Y-m-d H:i:s'));
   }
 }

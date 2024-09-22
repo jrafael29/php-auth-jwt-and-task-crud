@@ -33,4 +33,9 @@ class ConfirmationCodeService implements IConfirmationCodeService
     return $identifierCodeStored === $code;
   }
 
+  public function destroy(string $identifier)
+  {
+    return $this->confirmationCodeRepository->delete($identifier);
+  }
+
 }

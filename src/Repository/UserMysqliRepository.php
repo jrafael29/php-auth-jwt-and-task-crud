@@ -2,14 +2,26 @@
 declare(strict_types=1);
 namespace Src\Repository;
 use Src\Interface\Repository\UserRepository;
-use mysqli;
 
 class UserMysqliRepository implements UserRepository
 {
-  private mysqli $mysqli;
+  private \mysqli $mysqli;
   public function __construct()
   {
-    $this->mysqli = new mysqli("localhost:3306", "root", "root", "puraodb");
+      // Definir valores padrão caso as variáveis de ambiente não estejam definidas
+      $host = $_ENV['MYSQL_HOST'] ?? 'localhost'; // Valor padrão
+      $port = $_ENV['MYSQL_PORT'] ?? '3306';     // Valor padrão para a porta
+      $user = $_ENV['MYSQL_USER'] ?? 'root';     // Valor padrão para o usuário
+      $password = $_ENV['MYSQL_PASS'] ?? '';      // Pode ser uma string vazia
+      $dbName = $_ENV['MYSQL_DB'] ?? '';          // Nome do banco de dados (pode ser vazio)
+
+      // Criar a conexão com o MySQL
+      $this->mysqli = new \mysqli($host, $user, $password, $dbName, (int)$port);
+
+      // Verificar se houve erro na conexão
+      if ($this->mysqli->connect_error) {
+          throw new Exception("Connection failed: " . $this->mysqli->connect_error);
+      }
   }
 
   public function __destruct() 

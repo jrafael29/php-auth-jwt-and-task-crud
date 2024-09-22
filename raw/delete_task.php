@@ -1,5 +1,5 @@
 <?php 
-require_once("./vendor/autoload.php");
+require_once("../vendor/autoload.php");
 header("Content-Type: application/json; charset=utf-8");
 
 use Src\Middleware\AuthMiddleware;
@@ -8,9 +8,9 @@ use Src\Action\Task\DeleteTaskAction;
 use Src\Controller\Task\DeleteTaskController;
 
 try{
-  $middlewarePass = AuthMiddleware::use(getallheaders());
   $body = json_decode(file_get_contents("php://input"), true);
-
+  
+  $middlewarePass = AuthMiddleware::use(getallheaders());
   [$authUserId, $authUserEmail] = [$middlewarePass['id'], $middlewarePass['email']];
 
   $taskRepository       = new TaskMysqliRepository($authUserId);

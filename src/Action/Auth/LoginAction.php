@@ -31,7 +31,9 @@ class LoginAction implements Login
     $passwordMatches = PasswordService::comparePassword($userExists['password'], $password);
     if(!$passwordMatches) throw new Exception("invalid credentials");
 
-    if(true){ // validate if last login user is greater than 12 hours.
+    $useConfirmateCode = $_ENV['CONFIRMATE_CODE'];
+    
+    if($useConfirmateCode == 'true'){ // could validate if last login user is greater than 12 hours.
       // if true, send a confirmation code via email.
       $code = $this->confirmCodeService->generate($email);
       $this->emailService->sendConfirmationCodeEmail($email, $code);
