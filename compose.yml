@@ -6,14 +6,17 @@ services:
     ports:
       - "80:80"
     environment:
-      - REDIS_HOST=redis
-      - MYSQL_HOST=mysql
+      - REDIS_HOST=redis-api
+      - MYSQL_HOST=mysql-api
+      - RABBITMQ_HOST=rabbitmq-api
     depends_on:
       - redis-api
       - rabbitmq-api
       - mysql-api
     networks:
       - api_net
+    volumes:
+      - .:/app
   mysql-api:
     image: mysql:8.0
     container_name: mysql-api

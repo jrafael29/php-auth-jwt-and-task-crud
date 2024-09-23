@@ -8,11 +8,10 @@ class AuthMiddleware
   public static function use($requestHeaders)
   {
     try{
-      // echo json_encode($requestHeaders);
-      if (!isset($requestHeaders['authorization']) || empty($requestHeaders['authorization'])) {
+      if (!isset($requestHeaders['Authorization']) || empty($requestHeaders['Authorization'])) {
         throw new Exception("invalid authorization header");
       }
-      $bearerToken = $requestHeaders['authorization'];
+      $bearerToken = $requestHeaders['Authorization'];
       $bearerTokenParts = explode("Bearer ", $bearerToken);
       $token = $bearerTokenParts[1];
       return JwtService::verify($token);

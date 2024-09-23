@@ -12,20 +12,21 @@ class TaskMysqliRepository implements TaskRepository
 
   public function __construct(int $authUserId)
   {
-      // Definir valores padrão caso as variáveis de ambiente não estejam definidas
-      $host = $_ENV['MYSQL_HOST'] ?? 'localhost'; // Valor padrão
-      $port = $_ENV['MYSQL_PORT'] ?? '3306';     // Valor padrão para a porta
-      $user = $_ENV['MYSQL_USER'] ?? 'root';     // Valor padrão para o usuário
-      $password = $_ENV['MYSQL_PASS'] ?? '';      // Pode ser uma string vazia
-      $dbName = $_ENV['MYSQL_DB'] ?? '';          // Nome do banco de dados (pode ser vazio)
+    $this->authUserId = $authUserId;
+    // Definir valores padrão caso as variáveis de ambiente não estejam definidas
+    $host = $_ENV['MYSQL_HOST'] ?? 'localhost'; // Valor padrão
+    $port = $_ENV['MYSQL_PORT'] ?? '3306';     // Valor padrão para a porta
+    $user = $_ENV['MYSQL_USER'] ?? 'root';     // Valor padrão para o usuário
+    $password = $_ENV['MYSQL_PASS'] ?? '';      // Pode ser uma string vazia
+    $dbName = $_ENV['MYSQL_DB'] ?? '';          // Nome do banco de dados (pode ser vazio)
   
-      // Criar a conexão com o MySQL
-      $this->mysqli = new \mysqli($host, $user, $password, $dbName, (int)$port);
-  
-      // Verificar se houve erro na conexão
-      if ($this->mysqli->connect_error) {
-          throw new Exception("Connection failed: " . $this->mysqli->connect_error);
-      }
+    // Criar a conexão com o MySQL
+    $this->mysqli = new \mysqli($host, $user, $password, $dbName, (int)$port);
+
+    // Verificar se houve erro na conexão
+    if ($this->mysqli->connect_error) {
+        throw new Exception("Connection failed: " . $this->mysqli->connect_error);
+    }
   }
 
   public function __destruct() 

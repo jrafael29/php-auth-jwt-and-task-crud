@@ -14,9 +14,9 @@ class UserMysqliRepository implements UserRepository
       $user = $_ENV['MYSQL_USER'] ?? 'root';     // Valor padrão para o usuário
       $password = $_ENV['MYSQL_PASS'] ?? '';      // Pode ser uma string vazia
       $dbName = $_ENV['MYSQL_DB'] ?? '';          // Nome do banco de dados (pode ser vazio)
-
+      // echo "host" .$host. " port" .$port. " user" .$user. " pass" .$password. " dbname" . $dbName;
       // Criar a conexão com o MySQL
-      $this->mysqli = new \mysqli($host, $user, $password, $dbName, (int)$port);
+      $this->mysqli = new \mysqli($host, $user, $password , $dbName, (int)$port);
 
       // Verificar se houve erro na conexão
       if ($this->mysqli->connect_error) {

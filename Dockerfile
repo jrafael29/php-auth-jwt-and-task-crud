@@ -1,4 +1,4 @@
-FROM php:8.2-fpm
+FROM php:8.2-fpm-bullseye
 
 RUN apt-get update && apt-get install -y nginx
 
@@ -8,8 +8,9 @@ COPY . .
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
-RUN pecl install redis mysqli
-# RUN apt-get update && apt-get install -y mysqli
+RUN pecl install redis && rm -rf /tmp/pear && docker-php-ext-enable redis
+
+RUN docker-php-ext-install mysqli
 
 EXPOSE 80
 

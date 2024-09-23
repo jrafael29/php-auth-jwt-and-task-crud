@@ -1,18 +1,18 @@
-@token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZW1haWwiOiJyYWZhZWxzaWx2YTkyNDBAaG90bWFpbC5jb20iLCJleHAiOjE3MjY5OTE3MTd9.6bXLU11eJvCgjexh5TOaEYszh5zg67PK55fJ5w6Wmsw
-
+@token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZW1haWwiOiJyYWZhZWxzaWx2YTkyNDBAaG90bWFpbC5jb20iLCJleHAiOjE3MjcwNTg5MjJ9.FC_AKq0qgwPXUVOg9XFxxorj92zC4DcPPd33Ja1M2_4
+@url=localhost:80
 
 
 
 ### Registro
-POST http://localhost:80/signup
+POST http://{{url}}/signup
 Content-Type: application/json
 
-{"name":"Fulano","email":"rafaelsilva9240@hotmail.com","password":"123456"}
+{"name":"Fulano","email":"rafaelsilva9241@hotmail.com","password":"123456"}
 
 
 
 ### Login
-POST http://localhost:80/login
+POST http://{{url}}/login
 Content-Type: application/json
 
 {"email":"rafaelsilva9240@hotmail.com","password":"123456"}
@@ -20,26 +20,29 @@ Content-Type: application/json
 
 
 ### Confirmar codigo
-POST http://localhost:8888/confirmate-code
+POST http://{{url}}/confirmate-code
 Content-Type: application/json
 
-{"email":"rafaelsilva9240@hotmail.com","code":"858392"}
+{"email":"rafaelsilva9240@hotmail.com","code":"123321"}
 
 
+###
 
+GET http://{{url}}/
+Content-Type: application/json
 
 
 ### TAREFAS
 
 
 ### Buscar Tarefas
-GET http://localhost:8888/task
-Authorization: Bearer {{token}}
+GET http://{{url}}/task
+authorization: Bearer {{token}}
 Content-Type: application/json
 
 
 ### Criar Tarefa
-POST http://localhost:8888/task
+POST http://{{url}}/task
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -48,7 +51,7 @@ Content-Type: application/json
 
 
 ### Atualizar Tarefa
-PUT http://localhost:8888/task/13
+PUT http://{{url}}/task/1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -56,7 +59,7 @@ Content-Type: application/json
 
 
 ### Excluir Tarefa
-DELETE http://localhost:8888/task/12
+DELETE http://{{url}}/task/1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 

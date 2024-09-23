@@ -7,11 +7,11 @@ use Exception;
 
 class ConfirmationCodeRedisRepository implements ConfirmationCodeRepository
 {
-  private Redis $redisConn;
+  private \Redis $redisConn;
 
   public function __construct()
   {
-      $this->redisConn = new Redis();
+      $this->redisConn = new \Redis();
       $this->redisConn->connect($_ENV['REDIS_HOST'], (int) $_ENV['REDIS_PORT'], 2.5);
   }
 

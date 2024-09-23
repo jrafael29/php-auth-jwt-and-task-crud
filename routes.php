@@ -18,7 +18,6 @@ $routesMap = [
     "GET" => "Src\RawController\TaskRawController::handleGetAll",
   ],
   "/task/{id}" => [
-    // "GET" => "Src\RawController\TaskRawController::handleGet",
     "PUT" => "Src\RawController\TaskRawController::handlePut",
     "DELETE" => "Src\RawController\TaskRawController::handleDelete"
   ]

@@ -22,13 +22,13 @@ class ConfirmateCodeAction implements ConfirmateCode
   public function perform(ConfirmateCodeInputDTO $data): ConfirmateCodeOutputDTO
   {
     try{
-      [$email, $password] = [$data->email, $data->password];
+      [$email, $code] = [$data->email, $data->code];
 
       $userExists = $this->userRepository->getByEmail($email);
       if(!$userExists) throw new Exception("user not exists");
   
       // if true, send a confirmation code via email.
-      $codeIsValid = $this->confirmCodeService->validate($data->code, $email);
+      $codeIsValid = $this->confirmCodeService->validate($code, $email);
       if(!$codeIsValid) throw new Exception("invalid code");
 
       $jwtSignResult = JwtService::sign(['id' => $userExists['id'], 'email' => $userExists['email']]);
