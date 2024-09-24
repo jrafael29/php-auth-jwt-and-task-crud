@@ -9,10 +9,14 @@ services:
       - REDIS_HOST=redis-api
       - MYSQL_HOST=mysql-api
       - RABBITMQ_HOST=rabbitmq-api
+      - RABBITMQ_PORT=5672
     depends_on:
-      - redis-api
-      - rabbitmq-api
-      - mysql-api
+      redis-api:
+        condition: service_healthy
+      rabbitmq-api:
+        condition: service_healthy
+      mysql-api:
+        condition: service_healthy
     networks:
       - api_net
     volumes:
@@ -30,6 +34,11 @@ services:
       - mysql-volume:/var/lib/mysql
     networks:
       - api_net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
   redis-api:
     image: redis
     container_name: redis-api
@@ -40,18 +49,27 @@ services:
       - api_net
     volumes:
       - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
   rabbitmq-api:
     image: rabbitmq:3-management-alpine
     container_name: rabbitmq-api
     ports:
       - "5672:5672"
       - "15672:15672"
-    volumes:
-      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
     networks:
       - api_net
-
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq/
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 volumes:
   mysql-volume:
     driver: local

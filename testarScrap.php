@@ -23,9 +23,12 @@ foreach ($divs as $div) {
   $title1 = "";
   $title2 = "";
   $title3 = "";
+  $title4 = "";
+  $title5 = "";
+  $title6 = "";
 
   // Verificar se há títulos suficientes antes de acessar
-  for ($i = 0; $i < $titles->length && $i < 3; $i++) {
+  for ($i = 0; $i < $titles->length & $i < 6; $i++) {
     $title = $titles->item($i)->nodeValue;
     switch ($i) {
       case 0:
@@ -36,6 +39,15 @@ foreach ($divs as $div) {
         break;
       case 2:
         $title3 = $title;
+        break;
+      case 3:
+        $title4 = $title;
+        break;
+      case 4:
+        $title5 = $title;
+        break;
+      case 5:
+        $title6 = $title;
         break;
     }
   }
@@ -93,6 +105,15 @@ foreach ($divs as $div) {
         break;
       case 2:
         $titleL = $title3;
+        break;
+      case 3:
+        $titleL = $title4;
+        break;
+      case 4:
+        $titleL = $title5;
+        break;
+      case 5:
+        $titleL = $title6;
         break;
     }
     
